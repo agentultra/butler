@@ -5,6 +5,24 @@ A Common Lisp kernel for iPython frontends.
 
 See http://ipython.org/notebook.html for why this is cool.
 
+# Contributing #
+
+See
+[the message protocol](http://ipython.org/ipython-doc/dev/development/messaging.html)
+for implementation details.
+
+Implementing a basic functional kernel only requires implementing:
+
+* `kernel_info_request`
+* `kernel_info_reply`
+* `execute_request`
+* `execute_reply`
+
+At minimum... but it still won't display anything useful to the
+front-end. For that we'll need the IOPub channels and state messages.
+
+Pull requests welcome.
+
 # Building #
 
 Currently developing on Clozure with the intention of supporting more
