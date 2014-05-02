@@ -11,9 +11,9 @@
 (defun kernel-start (config)
   (zmq:with-context (ctx 1)
     (zmq:with-socket (heartbeat-socket ctx zmq:rep)
-      (zmq:bind heartbeat-socket (socket-bind-address
-                                  (cdr (assoc :transport config))
-                                  (cdr (assoc :ip config))
-                                  (cdr (assoc :hb--port config))))
-      (bordeaux-threads:make-thread
-       #'(lambda () (kernel-heartbeat heartbeat-socket))))))
+      (flet ((cfg (key) (config-value key config)))
+        (zmq:bind heartbeat-socket (socket-bind-address (cfg :transport)
+                                                        (cfg :ip)
+                                                        (cfg :hb--port)))
+        (bordeaux-threads:make-thread
+         #'(lambda () (kernel-heartbeat heartbeat-socket)))))))

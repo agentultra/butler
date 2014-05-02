@@ -13,5 +13,9 @@
   (cl-json:decode-json-from-source path))
 
 
+(defun config-value (key config)
+  (cdr (assoc key config)))
+
+
 (defun socket-bind-address (transport ip port)
   (format nil "~A://~A:~A" transport ip port))
