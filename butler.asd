@@ -5,7 +5,7 @@
   :description "Butler is a Common Lisp kernel for an iPython client"
   :author "James King <james@agentultra.com>"
   :license "MIT"
-  :depends-on (#:zeromq
+  :depends-on (#:zmq
                #:cl-json
                #:bordeaux-threads)
   :components ((:file "package")
