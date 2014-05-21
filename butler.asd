@@ -7,8 +7,10 @@
   :license "MIT"
   :depends-on (#:zmq
                #:cl-json
-               #:bordeaux-threads)
+               #:bordeaux-threads
+               #:ironclad)
   :components ((:file "package")
                (:file "utils" :depends-on ("package"))
-               (:file "kernel" :depends-on ("utils"))
+               (:file "session" :depends-on ("utils"))
+               (:file "kernel" :depends-on ("session"))
                (:file "butler" :depends-on ("kernel"))))
