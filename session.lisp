@@ -1,6 +1,9 @@
 (in-package #:butler)
 
 
+(defvar *DELIM* "<IDS|MSG>")
+
+
 (defclass message ()
   ((identities :accessor msg-ids
                :initform '()
@@ -35,3 +38,13 @@
                  :metadata metadata
                  :content content
                  :blob blob))
+
+
+(defun serialize-message (msg &key (hmac-key nil)))
+
+
+(defun unserialize-message (byte-string)
+  (let ((delim-index (search *DELIM* byte-string)))
+    (values
+     (subseq byte-string 0 delim-index)
+     (subseq byte-string (1+ delim-index)))))
