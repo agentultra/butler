@@ -10,7 +10,7 @@
 
 
 (defun get-configuration (path)
-  (cl-json:decode-json-from-source path))
+  (cl-json:decode-json-from-source (pathname path)))
 
 
 (defun config-value (key config)
